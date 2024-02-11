@@ -1,25 +1,23 @@
-import logo from './logo.svg';
+
 import './App.css';
 
+import React, { useEffect, useState } from 'react';
+
 function App() {
+
+  const [message, setMessage] = useState('');
+  useEffect(() => {
+    fetch('/')
+      .then((res) => res.text())
+      .then((data) => setMessage(data))
+      .catch((err) => console.log(err));
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>This is going to be my home page</h1>
+      <br></br>
+      <h1 style={{ "padding": "20%", "justifyContent": "center", "alignItems": "center", }}>{message}</h1>
     </div>
   );
 }
-
 export default App;
